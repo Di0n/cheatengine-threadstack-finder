@@ -77,7 +77,7 @@ std::vector<DWORD> threadList(DWORD pid) {
 			te.dwSize = sizeof(te);
 		} while (Thread32Next(h, &te));
 	}
-
+	CloseHandle(h);
 	return vect;
 }
 
@@ -135,7 +135,7 @@ DWORD GetThreadStartAddress(HANDLE processHandle, HANDLE hThread) {
 			}
 		}
 
-		delete buf32;
+		delete[] buf32;
 	}
 
 	return result;
